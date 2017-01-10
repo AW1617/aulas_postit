@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Crafty+Girls" rel="stylesheet">
+
+    <style>
+    body {height:500px}
+
+    #control {font-family: 'Quicksand', sans-serif;}
+
+    div.post div{
+      font-family: 'Crafty Girls', cursive;
+      font-size: 9px;
+       -ms-transform: rotate(-5deg); /* IE 9 */
+       -webkit-transform: rotate(-5deg); /* Chrome, Safari, Opera */
+       transform: rotate(-5deg);
+       margin-right:15px;
+       margin-left: 5px;
+       margin-top: 10px;
+    }
+    div.post {
+      width : 100px;
+      height : 100px;
+      /* background-color: lightblue; */
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      background-image: url("images/post-it-yellow.png");
+      background-size: 100%;
+      padding : 5px;
+      /* border-style: solid;
+      border-color:black; */
+    }
+
+    div#placard {
+      height : 500px;
+      background-color: beige;
+    }
+
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <div id="control">
+   <input type="text" id="textin"/>
+   Insira uma mensagem e clique no placard
+  </div>
+  <div id="placard">
+  </div>
+
+  <script type="text/javascript">
+
+  var placard = document.querySelector("#placard");
+
+  placard.onclick = function (event) {
+
+    console.log(event);
+    text = document.getElementById("textin").value;
+
+    if (text != "") {
+      document.getElementById("textin").value = "";
+     console.log(text);
+      newdiv = document.createElement("div");
+      newdiv.className = "post";
+      newdivtext = document.createElement("div");
+      newdivtext.innerHTML = text;
+
+      newdiv.appendChild(newdivtext);
+      placard.appendChild(newdiv);
+
+      //console.log((window.getComputedStyle(newdiv)).width);
+      newdiv.style.position = "absolute";
+      newdiv.style.left = event.clientX + "px";
+      newdiv.style.top = event.clientY + "px";
+    }
+  }
+
+  </script>
+  </body>
+</html>

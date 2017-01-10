@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Crafty+Girls" rel="stylesheet">
+
+    <style>
+    body {height:500px}
+
+    #control {font-family: 'Quicksand', sans-serif;}
+
+    div.post div{
+      font-family: 'Crafty Girls', cursive;
+      font-size: 9px;
+       -ms-transform: rotate(-5deg); /* IE 9 */
+       -webkit-transform: rotate(-5deg); /* Chrome, Safari, Opera */
+       transform: rotate(-5deg);
+       margin-right:15px;
+       margin-left: 5px;
+       margin-top: 10px;
+    }
+    div.post {
+      width : 100px;
+      height : 100px;
+      /* background-color: lightblue; */
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      background-image: url("images/post-it-yellow.png");
+      background-size: 100%;
+      padding : 5px;
+      /* border-style: solid;
+      border-color:black; */
+    }
+
+    div#placard {
+      height : 500px;
+      background-color: beige;
+    }
+
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="jquery/jquery-3.1.1.js"></script>
+  </head>
+  <body>
+  <div id="control">
+   <input type="text" id="textin"/>
+   Insira uma mensagem e clique no placard
+   <button id="bola"> mudar todos Olá </button>
+  </div>
+  <div id="placard">
+  </div>
+
+  <script type="text/javascript">
+
+  $("#bola").click(function () {
+    $("div.post div").html("olá, cá estou eu!");
+  });
+
+
+ 
+  var placard = document.querySelector("#placard");
+  placard = $("#placard");
+
+  placard.click(function (event) {
+
+    //console.log(event);
+
+    //text = document.getElementById("textin").value;
+    text = $("#textin").val();
+
+    if (text != "") {
+
+    //document.getElementById("textin").value = "";
+    $("#textin").val("");
+    
+    console.log(text);
+
+    // newdiv = document.createElement("div");
+    //   newdiv.className = "post";
+    //   newdiv.innerHTML = text;
+
+    newdiv = $("<div/>")
+      .addClass("post")
+      .append($("<div/>").html(text));
+
+      //placard.appendChild(newdiv);
+      placard.append(newdiv);
+
+      //console.log((window.getComputedStyle(newdiv)).width);
+      //newdiv.style.position = "absolute";
+      //newdiv.style.left = event.clientX + "px";
+      //newdiv.style.top = event.clientY + "px";
+
+      newdiv
+        .css("position","absolute")
+        .css("left", event.clientX + "px")
+        .css("top", event.clientY + "px");
+    }
+  });
+
+  </script>
+  </body>
+</html>
